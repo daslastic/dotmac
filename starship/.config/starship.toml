@@ -1,0 +1,3 @@
+[character] # The name of the module we are configuring is 'character'
+success_symbol = "🍺"
+error_symbol = "💔"

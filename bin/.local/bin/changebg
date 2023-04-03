@@ -1,0 +1,4 @@
+#/bin/sh
+
+pkill swaybg
+riverctl spawn 'swaybg -i "$(find $XDG_PICTURES_DIR/wallpapers/ -type f | shuf -n1)" -m fill'

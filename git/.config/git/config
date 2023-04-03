@@ -1,0 +1,5 @@
+[user]
+	email = daslastic@gmail.com
+	name = daslastic 
+[init]
+	defaultBranch = master

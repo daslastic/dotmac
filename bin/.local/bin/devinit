@@ -1,0 +1,14 @@
+#!/bin/sh
+
+bold="\033[1m"
+reset="\033[0m"
+if [ $# -ge 1 ] && [ -d "$DEVKIT/templates/$1" ]; then
+	[ -n "${2+set}" ] || { cowsay "Name the project, dumbass"; exit; }
+	cp -r $DEVKIT/templates/$1 $2
+	pushd $2
+	popd
+	echo -e "👷 Made project: ${bold}$2${reset} with template: ${bold}$1${reset}"
+else
+	echo -e "🌮 ${bold}Select a Template:${reset} <template> <name>"
+	lsd -1 $DEVKIT/templates
+fi

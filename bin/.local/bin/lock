@@ -1,0 +1,30 @@
+#!/bin/sh
+swaylock \
+        --image ~/pix/other/wallhaven-odvo9p.jpg \
+        --effect-vignette \
+        --grace 0.0 \
+        --effect-blur 30x5 \
+        --effect-scale 1.2 \
+        --clock \
+        --indicator \
+        --indicator-radius 200 \
+        --indicator-thickness 5 \
+        --ring-color 292045 \
+        --key-hl-color ffffff \
+        --line-color 00000000 \
+        --inside-color 00000000 \
+        --separator-color 00000098 \
+        --effect-scale 1.0 \
+        --scaling center \
+        --submit-on-touch \
+        --text-color ffffff \
+        --line-clear-color 00000000 \
+        --text-clear-color ffffff \
+        --inside-clear-color 00000000 \
+        --inside-wrong-color 00000000 \
+        --text-wrong-color ffffff \
+        --ring-ver-color 00000000 \
+        --inside-ver-color 00000000 \
+        --text-ver-color ffffff \
+        --timestr '%I:%M %p' \
+        --datestr '%b %d %Y'

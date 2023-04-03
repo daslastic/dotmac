@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pkill choose
+touch $DEVKIT/.clip
+pbpaste > $DEVKIT/.clip
+choose=$(cat $DEVKIT/bookmarks | choose) && [ -n "$choose" ] && echo "$choose" | pbcopy || exit 1
+osascript -e 'tell application "System Events" to keystroke "v" using command down'
+sleep 0.1
+pbcopy < $DEVKIT/.clip
+rm -rf $DEVKIT/.clip

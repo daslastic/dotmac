@@ -1,0 +1,5 @@
+#/bin/sh
+
+pbpaste >> $DEVKIT/bookmarks
+"\n" >> $DEVKIT/bookmarks
+osascript -e 'display notification "'$(pbpaste)'" with title "Created Bookmark 📑"'
