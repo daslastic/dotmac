@@ -59,16 +59,23 @@ icons:
   theme: fancy
   # Separator between icon and the name
   # Default to 1 space
-  separator: " "
+  separator: ' '
 
 # == Ignore Globs ==
 # A list of globs to ignore when listing.
+# Some dumb **** is hidden. Also some LSP nvim ****. What year is it????
 ignore-globs:
-   - '**/.DS_Store'
-   - '**/.Trash'
-   - '**/.vscode-oss'
-   - ..
-   - .
+  - '**/.DS_Store'
+  - '**/.Trash'
+  - '**/.vscode-oss'
+  - '**/.cups'
+  - '**/.wget-hsts'
+  - '**/.localized'
+  - '.hushlogin'
+  - '.m2'
+  - '.vscode'
+  - ..
+  - .
 
 # == Indicators ==
 # Whether to add indicator characters to certain listed files.

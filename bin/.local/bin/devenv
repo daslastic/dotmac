@@ -1,7 +1,0 @@
-#!/bin/sh
-
-path="$(pwd)"
-pushd ~/
-rm -rf project
-ln -s $path project
-popd

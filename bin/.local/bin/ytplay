@@ -1,3 +1,3 @@
-#/bin/sh
+#!/bin/sh
 pkill yt-dlp
 riverctl spawn "mpv --no-terminal >> yt-dlp '$1'"
