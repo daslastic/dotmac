@@ -8,13 +8,16 @@ end
 # 	sh $(find $FISH_CONFIG/colorscripts -type f | shuf -n1)
 # end
 
+bind -M insert \cs 'fd --type d . ~ --hidden | fzf $FZF_DEFAULT_OPTS $fzf_directory_opts --preview "bat --color=always {}"'
+
 set -U fish_greeting
 
-abbr vim "lvim"
-abbr vi "lvim"
-abbr v "lvim"
-abbr c "cd"
-abbr nvim "lvim"
+alias vim "nvim"
+alias vi "nvim"
+alias nv "nvim"
+alias v "nvim"
+alias nvim "nvim"
+alias c "cd"
 abbr ed "echo you need help"
 abbr ls "l"
 alias l "lsd -lA --config-file ~/.config/lsd/config.yml"
@@ -28,11 +31,10 @@ abbr doas "sudo"
 alias tree "tree -C"
 abbr mkdir "mkdir -p"
 alias grep "grep --color=auto"
-alias ipa " ifconfig en0 | grep 'inet\ ' | awk '{print $2}'"
 alias diff "diff --color=auto"
 alias ip "ip --color=auto"
 alias wget "wget --hsts-file='$XDG_DATA_HOME/wget-hsts'"
-alias upgrade "brew upgrade --casks --greedy; brew upgrade; brew cu --all; brew bundle  --file ~/.config/homebrew/Brewfile"
+alias upgrade "brew upgrade --casks --greedy; brew upgrade; brew cu --all; brew bundle --file ~/.config/homebrew/Brewfile"
 alias colorscript 'sh $(find $FISH_CONFIG/colorscripts -type f | shuf -n1)'
 alias p "cd $DEV/projects"
 
@@ -45,8 +47,9 @@ set -x XDH_BIN_HOME "$HOME/.local/bin"
 
 # global
 set -x FISH_CONFIG "$XDG_CONFIG_HOME/fish/"
-set -x EDITOR "lvim"
+set -x EDITOR "neovim"
 set -x TERMINAL "alacritty"
+set -x TERM "xterm-256color"
 set -x TLDR_OS "macos"
 
 # zsh
@@ -99,10 +102,9 @@ set -x PKG_CONFIG_PATH "$HOMEBREW_PREFIX/opt/$OPENSSL_PREFIX/lib/pkgconfig"
 # random plugin stuff
 set -U __done_notify_sound 1
 
-set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --height=100%'
-set fzf_directory_opts "--no-preview"
-set fzf_fd_opts . $HOME --color=never
-fzf_configure_bindings --git_status=\cg --history=\cr --variables=\cv --processes= --directory=\cs
+set --export FZF_DEFAULT_OPTS '--bind=ctrl-p:toggle-preview' '--layout=reverse'
+# the only way I could get this working properly, fml
+set fzf_directory_opts '--bind=enter:become(cd {} && $SHELL)' '--preview-window=hidden'
 
 # prompt
 set -x fish_color_cwd "green"
@@ -116,6 +118,8 @@ function __add_newline_after_command --on-event fish_postexec
 		printf "\n"
 	end
 end
+
+function fish_mode_prompt; end;
 
 # lunarvim
 set -x LUNARVIM_RUNTIME_DIR $HOME/.local/share/lunarvim

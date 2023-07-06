@@ -60,6 +60,6 @@ shift + alt - l : yabai -m window --resize right:50:0; yabai -m window --resize 
 
 # other
 shift + alt - f : yabai -m window --toggle native-fullscreen
-alt - q         : yabai -m window --close mouse
-cmd - q         : yabai -m window --close mouse
+alt - q         : yabai -m window --close
+cmd - q         : yabai -m window --close 
 alt - s         : yabai -m window --toggle float

@@ -1,0 +1,12 @@
+[submodule "tmux-sensible"]
+	path = tmux/.config/tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule "tmux-yank"]
+	path = tmux/.config/tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank
+[submodule "tpm"]
+	path = tmux/.config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "vim-tmux-navigator"]
+	path = tmux/.config/tmux/plugins/tpm/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
