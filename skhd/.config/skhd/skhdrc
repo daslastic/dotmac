@@ -63,3 +63,4 @@ shift + alt - f : yabai -m window --toggle native-fullscreen
 alt - q         : yabai -m window --close
 cmd - q         : yabai -m window --close 
 alt - s         : yabai -m window --toggle float
+alt - p         : spotify-play

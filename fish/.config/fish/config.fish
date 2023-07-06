@@ -1,4 +1,10 @@
 if status is-interactive
+  bind -M insert \cs 'fd --type d . ~ --hidden | fzf $FZF_DEFAULT_OPTS $fzf_directory_opts --preview "bat --color=always {}"'
+  bind -M visual \cs 'fd --type d . ~ --hidden | fzf $FZF_DEFAULT_OPTS $fzf_directory_opts --preview "bat --color=always {}"'
+  bind -M default \cs 'fd --type d . ~ --hidden | fzf $FZF_DEFAULT_OPTS $fzf_directory_opts --preview "bat --color=always {}"'
+  bind -M insert \cf 'clear; commandline -f repaint'
+  bind -M visual \cf 'clear; commandline -f repaint'
+  bind -M default \cf 'clear; commandline -f repaint'
 end
 if set -q SSH_TTY
   set -g fish_color_host brred
@@ -7,8 +13,6 @@ end
 # function fish_greeting
 # 	sh $(find $FISH_CONFIG/colorscripts -type f | shuf -n1)
 # end
-
-bind -M insert \cs 'fd --type d . ~ --hidden | fzf $FZF_DEFAULT_OPTS $fzf_directory_opts --preview "bat --color=always {}"'
 
 set -U fish_greeting
 
