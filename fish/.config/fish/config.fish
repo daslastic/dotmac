@@ -34,10 +34,11 @@ abbr mv "mv -iv"
 abbr doas "sudo"
 alias tree "tree -C"
 abbr mkdir "mkdir -p"
-alias grep "grep --color=auto"
+alias bat "bat -p --theme=gruvbox-dark"
+alias grep "rg --color=auto"
 alias diff "diff --color=auto"
 alias ip "ip --color=auto"
-alias wget "wget --hsts-file='$XDG_DATA_HOME/wget-hsts'"
+alias wget "wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
 alias upgrade "brew upgrade --casks --greedy; brew upgrade; brew cu --all; brew bundle --file ~/.config/homebrew/Brewfile"
 alias colorscript 'sh $(find $FISH_CONFIG/colorscripts -type f | shuf -n1)'
 alias p "cd $DEV/projects"
@@ -47,7 +48,7 @@ set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_STATE_HOME "$HOME/.cache/state"
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_DATA_HOME "$HOME/.local/share"
-set -x XDH_BIN_HOME "$HOME/.local/bin"
+set -x XDG_BIN_HOME "$HOME/.local/bin"
 
 # global
 set -x FISH_CONFIG "$XDG_CONFIG_HOME/fish/"
@@ -55,6 +56,10 @@ set -x EDITOR "neovim"
 set -x TERMINAL "alacritty"
 set -x TERM "xterm-256color"
 set -x TLDR_OS "macos"
+set -x  WGETRC "$XDG_CONFIG_HOME/wgetrc"
+set -x DEV "$HOME/Development"
+set -x MINECRAFT_DEV "$DEV/projects/minecraft/"
+set -x DEVKIT "$DEV/kit"
 
 # zsh
 set -x HISTFILE $CACHE/bash_history
@@ -75,24 +80,30 @@ fish_add_path $JAVA_HOME/bin
 fish_vi_key_bindings
 
 # dev
-fish_add_path $XDH_BIN_HOME 
+fish_add_path $XDG_BIN_HOME 
 fish_add_path $XDG_DATA_HOME/npm/bin
+set -gx PNPM_HOME "$XDG_DATA_HOME/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+
+mkdir -p "$XDG_DATA_HOME/npm"
 set -x NPM_CONFIG_PREFIX "$XDG_DATA_HOME/npm"
 set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/config"
+mkdir -p "$XDG_DATA_HOME/rustup"
 set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+mkdir -p "$XDG_DATA_HOME/cargo"
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -x PATH "$CARGO_HOME/bin:$PATH"
+mkdir -p "$XDG_DATA_HOME/go"
 set -x GOPATH "$XDG_DATA_HOME"/go
 set -x PYTHONSTARTUP $XDG_CONFIG_HOME/python/pythonrc
-set -x ANDROID_HOME "$XDG_DATA_HOME"/android
-set -x ANDROID_SDK_HOME "$XDG_CONFIG_HOME/android"
-set -x DEV "$HOME/Development"
-set -x MINECRAFT_DEV "$DEV/projects/minecraft/"
-set -x DEVKIT "$DEV/kit"
+mkdir -p "$XDG_DATA_HOME/android"
+set -x ANDROID_HOME "$XDG_DATA_HOME/android"
+set -x ANDROID_SDK_HOME "$XDG_DATA_HOME/android"
+mkdir -p "$XDG_DATA_HOME/docker"
+set -x DOCKER_CONFIG "$XDG_DATA_HOME"/docker
 
-mkdir -p "$XDG_DATA_HOME/rustup"
-mkdir -p "$XDG_CONFIG_HOME/android"
-mkdir -p "$XDG_DATA_HOME/cargo"
 
 direnv hook fish | source
 
@@ -104,8 +115,6 @@ set -x CPPFLAGS "-I/$HOMEBREW_PREFIX/opt/$OPENSSL_PREFIX/include"
 set -x PKG_CONFIG_PATH "$HOMEBREW_PREFIX/opt/$OPENSSL_PREFIX/lib/pkgconfig"
 
 # random plugin stuff
-set -U __done_notify_sound 1
-
 set --export FZF_DEFAULT_OPTS '--bind=ctrl-p:toggle-preview' '--layout=reverse'
 # the only way I could get this working properly, fml
 set fzf_directory_opts '--bind=enter:become(cd {} && $SHELL)' '--preview-window=hidden'
